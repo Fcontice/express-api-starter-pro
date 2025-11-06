@@ -1,0 +1,15 @@
+{
+  "name": "express-api-starter-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "setup": "cp .env.example .env || copy .env.example .env"  
+  },
+  "keywords": [],
+  "author": "FCONTICE",
+  "license": "ISC",
+  "type": "module"
+}
