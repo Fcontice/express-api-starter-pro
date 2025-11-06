@@ -5,11 +5,10 @@ const router = Router();
 
 /**
  * POST /api/ai/run
- * Request body:
  * {
  *   "prompt": "Summarize this text...",
  *   "model": "gpt-4o-mini",
- *   "provider": "openai"   // or "ollama" or "huggingface"
+ *   "provider": "openai" // or "ollama", "huggingface"
  * }
  */
 router.post("/run", runAIModel);

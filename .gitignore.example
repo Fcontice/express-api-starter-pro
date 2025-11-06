@@ -1,5 +1,18 @@
+# Dependencies
 node_modules/
+
+# Environment
 .env
+.env.local
+
+# Logs
 logs/
+*.log
+
+# Build & Coverage
 dist/
 coverage/
+
+# OS junk
+.DS_Store
+Thumbs.db

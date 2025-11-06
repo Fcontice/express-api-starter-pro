@@ -3,16 +3,47 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@types/jest": "^30.0.0",
+    "babel-jest": "^30.2.0",
+    "cross-env": "^10.1.0",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.3.0",
+    "supertest": "^7.1.4"
+  },
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
     "setup": "cp .env.example .env || copy .env.example .env",
     "lint": "eslint .",
-    "test": "node --test || echo \"(add tests)\""
+    "test": "cross-env NODE_ENV=test jest --runInBand"
   },
   "keywords": [],
   "author": "FCONTICE",
   "license": "ISC",
   "type": "module",
-  "engines": { "node": ">=20.0.0" }
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "fs": "^0.0.1-security",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.3",
+    "morgan": "^1.10.1",
+    "openai": "^6.8.1",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.18.3",
+    "yamljs": "^0.3.0",
+    "zod": "^4.1.12"
+  }
 }
