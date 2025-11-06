@@ -17,6 +17,7 @@ import YAML from "yamljs";
 
 dotenv.config();
 const app = express();
+app.disable("x-powered-by");
 connectDB();
 
 app.use(helmet());
