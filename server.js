@@ -9,11 +9,9 @@ import { apiLimiter } from "./src/middleware/rateLimiter.js";
 import { errorHandler } from "./src/middleware/errorHandler.js";
 import logger from "./src/config/logger.js";
 
-// routes
-import authRoutes from "./src/routes/auth.routes.js";
-import userRoutes from "./src/routes/user.routes.js";
+import registerRoutes from "./src/routes/index.js";
+registerRoutes(app);
 
-// swagger
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
 
@@ -28,14 +26,11 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 app.use("/api", apiLimiter);
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
 
-// swagger docs
+
 const swaggerDocument = YAML.load("./swagger.yaml");
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-// health
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
 app.use(errorHandler);
