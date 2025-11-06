@@ -1,11 +1,41 @@
 import { Router } from "express";
-import { register, login, refreshToken, logout } from "../controllers/auth.controller.js";
-import { zValidator } from "../middleware/zValidator.js";
-import { registerSchema, loginSchema } from "../validation/auth.schema.js";
+import {
+  register,
+  login,
+  refreshToken,
+  logout,
+} from "../controllers/auth.controller.js";
+import { validate } from "../middleware/validate.js";
+import {
+  registerSchema,
+  loginSchema,
+  noopSchema,
+} from "../validation/auth.schema.js";
 
-const r = Router();
-r.post("/register", zValidator(registerSchema), register);
-r.post("/login", zValidator(loginSchema), login);
-r.post("/refresh", refreshToken);
-r.post("/logout", logout);
-export default r;
+const router = Router();
+
+/**
+ * @route POST /api/auth/register
+ * @body { name, email, password }
+ */
+router.post("/register", validate(registerSchema), register);
+
+/**
+ * @route POST /api/auth/login
+ * @body { email, password }
+ */
+router.post("/login", validate(loginSchema), login);
+
+/**
+ * @route POST /api/auth/refresh
+ * no body; uses refreshToken cookie
+ */
+router.post("/refresh", validate(noopSchema), refreshToken);
+
+/**
+ * @route POST /api/auth/logout
+ * clears cookies
+ */
+router.post("/logout", validate(noopSchema), logout);
+
+export default router;

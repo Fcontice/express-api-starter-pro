@@ -1,16 +1,15 @@
 import { Router } from "express";
 import { runAIModel } from "../controllers/ai.controller.js";
+import { validate } from "../middleware/validate.js";
+import { aiRunSchema } from "../validation/ai.schema.js";
+import { requireAuth } from "../middleware/auth.js";
 
 const router = Router();
 
 /**
- * POST /api/ai/run
- * {
- *   "prompt": "Summarize this text...",
- *   "model": "gpt-4o-mini",
- *   "provider": "openai" // or "ollama", "huggingface"
- * }
+ * @route POST /api/ai/run
+ * @body { provider: "openai" | "huggingface" | "ollama", model?: string, prompt: string }
  */
-router.post("/run", runAIModel);
+router.post("/run", requireAuth, validate(aiRunSchema), runAIModel);
 
 export default router;
